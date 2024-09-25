@@ -8,7 +8,9 @@ output reg [31:0] w1;
 output reg [31:0] w2;
 output reg [31:0] w3;
 reg [31:0] Rcon [0:9];
-
+parameter m = 8; 
+parameter mask = (1 << m) - 1;
+parameter p = 27;
 initial begin
 		Rcon[0] = 32'h01000000;
 		Rcon[1] = 32'h02000000;
@@ -26,9 +28,6 @@ function [7:0] GFM;
     input [7:0] a;
     input [7:0] b;
     integer i;
-    parameter m = 8;
-    parameter mask = (1 << m) - 1;
-    parameter p = 27;
     begin
         GFM = 0;
         for (i = m-1; i > 0; i = i - 1) begin
